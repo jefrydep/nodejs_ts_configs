@@ -11,7 +11,7 @@
     npm i nodemon -g
     tsc --init
     npm init -y
-    npm i express cors dotenv multer
+    npm i express cors dotenv multer bcryptjs jsonwebtoken morgan
 
     Install Prisma
 
@@ -24,15 +24,13 @@
 ### dev 
 ```
 
-    npm i @types/express @types/cors @types/dotenv @types/multer -D
+    npm i @types/express @types/cors @types/dotenv @types/multer @types/bcryptjs @types/jsonwebtoken @types/morgan -D
 
 ```
-#### congigure nodemon add dev and path main
+#### congigure nodemon ,add dev and path main
 ```js
 "scripts": {
- 
     "dev":"nodemon ./src/app.ts"
-
   },
 ```
 
