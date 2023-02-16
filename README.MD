@@ -2,7 +2,7 @@
 
 ## COMANDS USED
 
-1. npm i typescript -g  // instalamos de manera global
+1. npm i typescript -g  <!-- instalamos de manera global -->
 
 
 ### dependencies
@@ -21,7 +21,7 @@
 
 
 ```
-### dev 
+### dev dependencies
 ```
 
     npm i @types/express @types/cors @types/dotenv @types/multer @types/bcryptjs @types/jsonwebtoken @types/morgan -D
@@ -34,4 +34,3 @@
   },
 ```
 
-### create a new prisma folder
