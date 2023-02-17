@@ -1,0 +1,31 @@
+version: "2"
+services:
+  # node:
+  #   build:
+  #     context: ./
+  #     dockerfile: Dockerfile
+  #   container_name: tudoctornet_backend
+  #   # image: node:19-alpine
+  #   restart: always
+  #   working_dir: /home/node/app
+  #   environment:
+  #     - NODE_ENV=production
+  #   volumes:
+  #     - ./:/home/node/app
+  #   ports:
+  #     - "8081:8081"
+  #   command: "npm run start"
+
+  db:
+    image: postgres:14.3
+    restart: always
+    ports:
+      - "${DB_PORT}:5432"
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+      # POSTGRES_USER: ${DB_USER}
+      # POSTGRES_PORT: ${DB_PORT}
+    container_name: dbtudoctornet
+    volumes:
+      - ./postgres:/var/lib/postgresql/data

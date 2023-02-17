@@ -9,3 +9,41 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+model User {
+  id             Int         @id @default(autoincrement())
+  documentNumber String      @unique
+  password       String
+  // role           Role        @default(ADMIN)
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+  // profile        Profile?
+  // corporation    Corporation @relation(fields: [corporationId], references: [id])
+  corporationId  Int
+  // Doctor         Doctor?
+}
+model Car {
+  id  Int @id @default(autoincrement())
+  name String 
+  marca String
+}
+model farmacia{
+  id Int @id @default(autoincrement())
+  name String
+}
+model Roles {
+  id Int @id @default(autoincrement())
+  name String
+  
+}
+model Anime{
+  id Int @id @default(autoincrement())
+  name String
+
+}
+model Product{
+  id Int @id @default(autoincrement())
+  name String
+  price Int
+
+
+}

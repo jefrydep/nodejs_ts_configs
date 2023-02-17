@@ -1,6 +1,8 @@
 // import { User,Profile,Patient,Doctor,PrismaClient, Corporation, Laboratory } from "@prisma/client";
 
-// PrismaClient
+import { PrismaClient } from "@prisma/client";
+
+PrismaClient
 
 // export type userPick = Pick<
 //   User,
@@ -68,8 +70,8 @@
 //   Corporation,
 //   "name" | "ruc" | "fullDescription"
 // >;
-// export type errorProp = {
-//   errorContent?: string;
-//   status: number;
-//   message: string;
-// };
+export type errorProp = {
+  errorContent?: string;
+  status: number;
+  message: string;
+};

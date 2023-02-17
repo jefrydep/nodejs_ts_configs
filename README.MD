@@ -35,3 +35,23 @@
   },
 ```
 
+### docker comands
+- para levantar la base de datos de docker si tiene la levanta y si no la descarga
+
+```
+docker-compose up -d
+```
+### prisma comands
+```
+    npx prisma generate
+    npx prisma migrate dev
+    npx prisma migrate dev --name init
+    npx prisma studio
+```
+### table plus connect data base
+
+names: tudotornet
+host: localhost
+port:5432
+user:postgres
+password:root
