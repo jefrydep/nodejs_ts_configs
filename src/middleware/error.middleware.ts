@@ -1,4 +1,3 @@
-import { Prisma } from "@prisma/client";
 import { Response, Request, NextFunction } from "express";
 import { errorProp } from "../utils/format.server";
 

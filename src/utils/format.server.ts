@@ -1,15 +1,14 @@
-// import { User,Profile,Patient,Doctor,PrismaClient, Corporation, Laboratory } from "@prisma/client";
 
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, User } from "@prisma/client";
 
 PrismaClient
 
-// export type userPick = Pick<
-//   User,
-//   "documentNumber" | "password" | "role" | "corporationId"
-// >;
+export type userPick = Pick<
+  User,
+  "userName" |"email" | "password" 
+>;
 
-// export type loginPick = Pick<User, "documentNumber" | "password">;
+export type loginPick = Pick<User, "email" | "password">;
 // export type profilePick = Profile;
 
 // export type userProfilePick = Pick<
