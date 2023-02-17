@@ -16,7 +16,7 @@ model User {
   posts     Post[]
   likes     Like[]
   comment    Comment[]
-  profileImg String
+  profileImg String?
 }
 
 model Post {

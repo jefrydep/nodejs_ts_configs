@@ -5,7 +5,7 @@ PrismaClient
 
 export type userPick = Pick<
   User,
-  "userName" |"email" | "password" 
+  "userName" |"email" | "password"|"profileImg"|"createdAt"|"userId" 
 >;
 
 export type loginPick = Pick<User, "email" | "password">;

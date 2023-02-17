@@ -31,7 +31,7 @@
 #### congigure nodemon ,add dev and path main
 ```js
 "scripts": {
-    "dev":"nodemon ./src/app.ts"
+     "dev": "nodemon ./src/server.ts"
   },
 ```
 
