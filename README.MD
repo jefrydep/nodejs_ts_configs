@@ -1,4 +1,5 @@
 # PROJECT WITH PRISMA AND NODE MORE TS
+<center> <h1> PROJECT WITH PRISMA AND NODE MORE TS</h1> </center>
 
 ## COMANDS USED
 
@@ -35,7 +36,7 @@
 
 ```js
 "scripts": {
-    "dev":"nodemon ./src/app.ts"
+    "dev":"nodemon ./src/server.ts"
   },
 ```
 
