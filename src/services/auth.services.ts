@@ -5,6 +5,7 @@ import bcrypt from "bcryptjs";
 // import * as bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
 import * as dotenv from "dotenv";
+import { generateJWT } from "../helpers/jwt";
 
 dotenv.config();
 const secret = process.env.SECRET;
@@ -17,7 +18,6 @@ export class authServices {
         where: { email },
         select: {
           email: true,
-
           password: true,
         },
       });
@@ -32,11 +32,21 @@ export class authServices {
   }
   static async create(data: userPick) {
     try {
+
       const { userName, email, password } = data;
-      const passwordHash = await bcrypt.hash(password, 10);
+      let user = await prisma.user.findUnique({where:{
+        email
+      }})
+      
+      const salt = bcrypt.genSaltSync();
+      const passwordHash = await bcrypt.hash(password, salt);
+      // await user.save
+      const token = await generateJWT(user?.userId,user?.userName)
+
       const newUser = await prisma.user.create({
         data: {
           // ...data,
+          
           userName,
           email,
           password: passwordHash,
@@ -52,16 +62,16 @@ export class authServices {
     }
   }
 
-  static getToken(data: userPick) {
+  // static getToken(data: userPick) {
     
-    try {
-      if (secret) {
-        const token = jwt.sign(data, secret, { algorithm: "HS512" });
-        return token;
-      }
-    } catch (error) {
-      throw error;
-    }
-  }
+  //   try {
+  //     if (secret) {
+  //       const token = jwt.sign(data, secret, { algorithm: "HS512" });
+  //       return token;
+  //     }
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // }
 }
 export default authServices;
