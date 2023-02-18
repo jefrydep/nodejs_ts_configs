@@ -17,13 +17,18 @@ export class authServices {
       const user = await prisma.user.findUnique({
         where: { email },
         select: {
+          userId: true,
           email: true,
           password: true,
+          userName: true,
         },
       });
       if (!user) return false;
       const verifyPassword = await bcrypt.compare(password, user.password);
-      if (verifyPassword) return user;
+      const { userId, userName } = user;
+      const token = await generateJWT(userId, userName);
+      // console.log(token)
+      if (verifyPassword) return { user, token };
 
       return verifyPassword;
     } catch (error) {
@@ -32,46 +37,37 @@ export class authServices {
   }
   static async create(data: userPick) {
     try {
-
-      const { userName, email, password } = data;
-      let user = await prisma.user.findUnique({where:{
-        email
-      }})
-      
-      const salt = bcrypt.genSaltSync();
-      const passwordHash = await bcrypt.hash(password, salt);
-      // await user.save
-      const token = await generateJWT(user?.userId,user?.userName)
-
-      const newUser = await prisma.user.create({
-        data: {
-          // ...data,
-          
-          userName,
+      const { userId,userName, email, password } = data;
+      let user = await prisma.user.findUnique({
+        where: {
           email,
-          password: passwordHash,
         },
-         
-       
       });
+      if (!user) {
+        const salt = bcrypt.genSaltSync();
+        const passwordHash = await bcrypt.hash(password, salt);
+        const newUser = await prisma.user.create({
+          data: {
+            userName,
+            email,
+            password: passwordHash,
+          },
+          select: {
+            userName: true,
+            userId: true,
+            password: true,
+          },
+        });
+        // const { userId } = newUser;
+        const token = await generateJWT(userId, userName);
 
-      return newUser;
+        return { ...newUser, token };
+      }
+      return null;
     } catch (error) {
       console.log(error);
       throw error;
     }
   }
-
-  // static getToken(data: userPick) {
-    
-  //   try {
-  //     if (secret) {
-  //       const token = jwt.sign(data, secret, { algorithm: "HS512" });
-  //       return token;
-  //     }
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // }
 }
 export default authServices;

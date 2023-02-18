@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import authServices from "../services/auth.services";
 import { Prisma } from "@prisma/client";
+import { generateJWT } from "../helpers/jwt";
 export const Register = async (req: Request, res: Response) => {
 
   try {
@@ -18,17 +19,17 @@ export const Register = async (req: Request, res: Response) => {
   }
 };
 
-// export const login = async (req: Request, res: Response) => {
-//   try {
-//     const result = await authServices.auth(req.body);
-//     if (result) {
-//       const token = authServices.getToken(result);
-//       console.log(token);
-//     }
-//     console.log(result);
+export const login = async (req: Request, res: Response) => {
+  try {
+    const result= await authServices.auth(req.body);
+    // const {userId,userName}= result;
+    console.log(result)
+    // if (result) {
+    //   const token = generateJWT(userId,userName)
+    // }
 
-//     res.json(result);
-//   } catch (error) {
-//     res.status(400).json({ error });
-//   }
-// };
+    res.json(result);
+  } catch (error) {
+    res.status(400).json({ error });
+  }
+};
