@@ -20,13 +20,13 @@ export class authServices {
           userId: true,
           email: true,
           password: true,
-          userName: true,
+          firstName: true,
         },
       });
       if (!user) return false;
       const verifyPassword = await bcrypt.compare(password, user.password);
-      const { userId, userName } = user;
-      const token = await generateJWT(userId, userName);
+      const { userId, firstName } = user;
+      const token = await generateJWT(userId, firstName);
       // console.log(token)
       if (verifyPassword) return { user, token };
 
@@ -39,12 +39,12 @@ export class authServices {
     try {
       const {
         userId,
-        userName,
+        firstName,
         email,
         password,
         lastName,
         location,
-        ocupation,
+        occupation,
         profileImg,
       } = data;
       let user = await prisma.user.findUnique({
@@ -58,26 +58,26 @@ export class authServices {
         const newUser = await prisma.user.create({
           data: {
             lastName,
-            userName,
+            firstName,
             location,
-            ocupation,
+            occupation,
             profileImg,
             email,
             password: passwordHash,
           },
           select: {
-            userName: true,
+            firstName: true,
             userId: true,
             // password: true,
             location: true,
             lastName: true,
-            ocupation: true,
+            occupation: true,
             profileImg: true,
             email: true,
           },
         });
         // const { userId } = newUser;
-        const token = await generateJWT(userId, userName);
+        const token = await generateJWT(userId, firstName);
 
         return { ...newUser, token };
       }
