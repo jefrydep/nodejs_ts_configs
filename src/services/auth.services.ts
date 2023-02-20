@@ -37,7 +37,16 @@ export class authServices {
   }
   static async create(data: userPick) {
     try {
-      const { userId,userName, email, password } = data;
+      const {
+        userId,
+        userName,
+        email,
+        password,
+        lastName,
+        location,
+        ocupation,
+        profileImg,
+      } = data;
       let user = await prisma.user.findUnique({
         where: {
           email,
@@ -48,14 +57,23 @@ export class authServices {
         const passwordHash = await bcrypt.hash(password, salt);
         const newUser = await prisma.user.create({
           data: {
+            lastName,
             userName,
+            location,
+            ocupation,
+            profileImg,
             email,
             password: passwordHash,
           },
           select: {
             userName: true,
             userId: true,
-            password: true,
+            // password: true,
+            location: true,
+            lastName: true,
+            ocupation: true,
+            profileImg: true,
+            email: true,
           },
         });
         // const { userId } = newUser;
