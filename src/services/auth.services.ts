@@ -17,10 +17,13 @@ export class authServices {
       const user = await prisma.user.findUnique({
         where: { email },
         select: {
+          lastName:true,
           userId: true,
           email: true,
           password: true,
           firstName: true,
+          location:true,
+          occupation:true,
         },
       });
       if (!user) return false;
