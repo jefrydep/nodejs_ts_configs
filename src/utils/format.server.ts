@@ -1,5 +1,5 @@
 
-import { PrismaClient, User } from "@prisma/client";
+import { Post, PrismaClient, User } from "@prisma/client";
 
 PrismaClient
 
@@ -8,6 +8,10 @@ export type userPick = Pick<
   "firstName" |"email" | "password"|"profileImg"|"createdAt"|"userId"|"lastName"|"location"|"occupation"
 >;
 
+export type postPick = Pick<
+Post,
+"createdAt"|"location"|"photo"|"postDescription"|"postId"|"userId"
+>;
 export type loginPick = Pick<User, "email" | "password">;
 // export type profilePick = Profile;
 

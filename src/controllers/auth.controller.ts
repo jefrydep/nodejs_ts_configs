@@ -8,9 +8,9 @@ export const Register = async (req: Request, res: Response) => {
     const result = await authServices.create(req.body);
     res.status(201).json(result);
   } catch (error: Prisma.PrismaClientKnownRequestError | any) {
-    if (error.code == "P2002") {
-      res.status(400).json({ error: "user exist" });
-    }
+    // if (error.code == "P2002") {
+    //   res.status(400).json({ error: "user exist" });
+    // }
     if (error.code == "P2025") {
       res.status(400).json({ error: "not register" });
     } else {

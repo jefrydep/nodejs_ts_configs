@@ -16,6 +16,7 @@ import morgan from "morgan";
 import { prisma } from "./utils/prisma.server";
 import { handleError } from "./middleware/error.middleware";
 import { autRouter } from "./routes/auth.route";
+import { postRouter } from "./routes/post.route";
 // import { docRoute, labRoute, receiptsRoute } from "./routes";
 export const app = express();
 require("dotenv").config();
@@ -27,6 +28,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(cors());
 app.use('/api',autRouter)
+app.use('/api',postRouter)
 // app.use('/api',labRoute)
 // app.use('/api',receiptsRoute)
 
