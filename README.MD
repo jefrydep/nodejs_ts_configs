@@ -13,6 +13,7 @@
     tsc --init
     npm init -y
     npm i express cors dotenv multer bcryptjs jsonwebtoken morgan
+    npm install --save express-validator
 
     Install Prisma
 
