@@ -48,16 +48,17 @@ export class PostServices {
         throw error;
       }
     }
-    static async getUserPosts (id:User['userId']){
+    static async getUserPosts (userId:User['userId']){
 
     // static async getUserPosts (id){
       try {
         const result = await prisma.user.findUnique({
-          where:{},
+          where:{ userId},
           select:{
             // postDescription:true,
-            location:true,
-            createdAt:true,
+            // location:true,
+            // createdAt:true,
+            posts:true
             // photo:true,
 
             // location:true
