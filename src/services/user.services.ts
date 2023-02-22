@@ -23,6 +23,7 @@ export class userServices {
         select: {
           friend: true,
         },
+        
       });
       return result;
     } catch (error) {
