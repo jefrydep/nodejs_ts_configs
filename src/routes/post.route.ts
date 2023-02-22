@@ -3,7 +3,7 @@ import { createPost, showAllPosts, showUserPosts } from "../controllers/post.con
 // import { check } from "express-validator/src/middlewares/validation-chain-builders";
 // import { validateFields } from "../middleware/validateFields";
  
-const app = express();
+// const app = express();
 const postRouter = Router();
 postRouter.post("/post",createPost);
 postRouter.get("/post/showAll",showAllPosts);

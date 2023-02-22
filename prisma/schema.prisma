@@ -20,6 +20,7 @@ model User {
   likes      Like[]
   comment    Comment[]
   profileImg String?
+  friend     Friend[]
 }
 
 model Post {
@@ -52,4 +53,15 @@ model Comment {
   user        User   @relation(fields: [userId], references: [userId])
   userId      Int
   likes       Like[]
+}
+
+model Friend {
+  friendId    Int    @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  picturePath String
+  occupation  String
+  location    String
+  user        User   @relation(fields: [userId], references: [ userId])
+  userId      Int
 }
