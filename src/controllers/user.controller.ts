@@ -2,6 +2,17 @@ import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { NextFunction, Request, Response } from "express";
 import { userServices } from "../services/user.services";
 
+
+export const getAllUsers = async (req: Request, res: Response) => {
+  try {
+    const result = await userServices.getAllUsers();
+    res.status(200).json(result);
+  } catch (error) {
+    res.json({ error: "error" });
+  }
+};
+
+
 export const getUserById = async (
   req: Request,
   res: Response,

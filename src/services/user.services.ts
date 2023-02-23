@@ -8,8 +8,28 @@ export class userServices {
         where: { userId },
         select: {
           userId: true,
-          profileImg: true,
+          firstName: true,
+          lastName: true,
+          occupation: true,
+          location: true,
         },
+      });
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+  static async getAllUsers() {
+    try {
+      const result = await prisma.user.findMany({
+        select:{
+          firstName:true,
+          lastName:true,
+          location:true,
+          occupation:true,
+          userId:true,
+          
+        }
       });
       return result;
     } catch (error) {
@@ -23,11 +43,10 @@ export class userServices {
         select: {
           friend: true,
         },
-        
       });
       return result;
     } catch (error) {
-        throw error;
+      throw error;
     }
   }
 }
