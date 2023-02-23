@@ -4,7 +4,7 @@ import { getAllUsers, getUserById, getUserFriends } from "../controllers/user.co
 const userRouter  = Router();
 userRouter.get("/:id",getUserById);
 userRouter.get("/:id/friends",getUserFriends);
-userRouter.get("/all",getAllUsers);
+userRouter.get("/users/all",getAllUsers);
 // userRouter.patch("/:id/:frindId")
 
 

@@ -27,6 +27,7 @@ export class userServices {
           lastName:true,
           location:true,
           occupation:true,
+          profileImg:true,
           userId:true,
           
         }

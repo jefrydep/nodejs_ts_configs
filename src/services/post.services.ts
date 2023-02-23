@@ -28,9 +28,13 @@ export class PostServices {
       try {
         const result = await prisma.post.findMany({
           select: {
-            location:true,
+            // location:true,
              postDescription:true,
-             coment: true,
+            //  location:true,
+            coment:true,
+            userId:true,
+            //  coment: true,
+
              user:{
               select:{
                 firstName:true,
@@ -38,11 +42,13 @@ export class PostServices {
                 location:true,
                 occupation:true,
                 profileImg:true,
-                comment:true
+               
               }
              }
+             
           },
         });
+        
         return result;
       } catch (error) {
         throw error;
